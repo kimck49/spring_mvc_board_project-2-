@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gyojincompay.MVCBoard.command.BCommand;
+import com.gyojincompay.MVCBoard.command.BContentCommand;
 import com.gyojincompay.MVCBoard.command.BListCommand;
 import com.gyojincompay.MVCBoard.command.BWriteCommand;
 
@@ -47,5 +48,20 @@ public class BController {
 		
 		return "write_form";
 	}
+	
+	@RequestMapping("/content_view")
+	public String content_view(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		command = new BContentCommand();
+		command.excute(model);
+		
+		return "content_view";
+	}
+	
+	
+	
+	
 	
 }

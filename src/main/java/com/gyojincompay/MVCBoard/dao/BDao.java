@@ -119,7 +119,61 @@ public class BDao {
 		
 	}
 	
-	
+	public BDto content_view(String cid) {
+		
+		BDto dto = null;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			String query = "select * from mvc_board where bid = ?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, cid);
+			//pstmt.setInt(1, Integer.parseInt(cid)); //bid 필드 값이 number인 경우 
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				 int bId = rs.getInt("bid");
+				 String bName = rs.getString("bname");
+				 String bTitle = rs.getString("btitle");
+				 String bContent = rs.getString("bcontent");
+				 Timestamp bDate = rs.getTimestamp("bdate");
+				 int bHit = rs.getInt("bhit");
+				 int bGroup = rs.getInt("bgroup");
+				 int bStep = rs.getInt("bstep");
+				 int bIndent = rs.getInt("bindent");
+				 
+				 dto = new BDto(bId, bName, bTitle, bContent, bDate, bHit, bGroup, bStep, bIndent);
+				 
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return dto; 
+	}
 	
 	
 	
