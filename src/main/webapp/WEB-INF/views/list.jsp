@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>자유게시판 글목록</title>
 </head>
 <body>
 	<h2>자유게시판 글목록</h2>
@@ -27,6 +27,10 @@
 			<td>${dto.bhit }</td>
 		</tr>
 		</c:forEach>
+		<tr>
+			<td colspan="5" align="right"><a href="write_form">글쓰기</a></td>
+		</tr>
+		
 	</table>
 </body>
 </html>
