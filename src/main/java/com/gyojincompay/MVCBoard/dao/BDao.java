@@ -175,7 +175,40 @@ public class BDao {
 		return dto; 
 	}
 	
-	
+	public void modify(String bid, String bname, String btitle, String bcontent) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;		
+		
+		try {
+			conn = dataSource.getConnection();
+			String query = "UPDATE mvc_board SET bname=?, btitle=?, bcontent=? WHERE bid=?";
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, bname);
+			pstmt.setString(2, btitle);
+			pstmt.setString(3, bcontent);
+			pstmt.setString(4, bid);
+			
+			pstmt.executeUpdate();//데이터 삽입에 성공하면 1이 반환
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {				
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}		
+		
+	}
 	
 	
 	
