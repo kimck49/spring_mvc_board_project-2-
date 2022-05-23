@@ -31,9 +31,9 @@
 			<td>${content.bcontent }</td>
 		</tr>
 		<tr>
-			<td colspan="2">
+			<td colspan="2" align="right">
 				<a href="">답변</a>&nbsp;&nbsp;
-				<a href="">수정</a>&nbsp;&nbsp;
+				<a href="modify_view?bid=${content.bid }">수정</a>&nbsp;&nbsp;
 				<a href="">삭제</a>&nbsp;&nbsp;
 				<a href="list">글목록보기</a>
 			</td>

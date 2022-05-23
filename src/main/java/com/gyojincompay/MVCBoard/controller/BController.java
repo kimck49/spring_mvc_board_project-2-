@@ -60,6 +60,17 @@ public class BController {
 		return "content_view";
 	}
 	
+	@RequestMapping("/modify_view")
+	public String modify_view(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		command = new BContentCommand();
+		command.excute(model);
+		
+		return "modify_view";
+	}
+	
 	
 	
 	
